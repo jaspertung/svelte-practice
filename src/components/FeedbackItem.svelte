@@ -1,9 +1,52 @@
 <script>
+    // custom dispatch event to get data from app.svelte for handleDelete
+    import {createEventDispatcher} from 'svelte'
     import Card from './Card.svelte'
     export let item
+
+    const dispatch = createEventDispatcher()
+
+    // send/(dispatch) up to app.svelte to get data
+    const handleDelete = (itemId) => {
+        // 1st arg- creating custom event, 2nd arg- pass in data
+        dispatch('delete-feedback', itemId)
+    }
 </script>
 
 <Card>
     <!-- whatever is written here will go into card slots -->
-    Hello
+    <div class="num-display">
+        {item.rating}
+    </div>
+    <button class="close" on:click={() => handleDelete(item.id)}>
+        X
+    </button>
+    <p class="text-display">
+        {item.text}
+    </p>
 </Card>
+
+<style>
+    .num-display {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 50px;
+        height: 50px;
+        background: #ff6a95;
+        color: #fff;
+        border: 1px #eee solid;
+        border-radius: 50%;
+        padding: 10px;
+        text-align: center;
+        font-size: 19px;
+    }
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+</style>

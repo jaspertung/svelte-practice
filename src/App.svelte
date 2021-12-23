@@ -18,11 +18,20 @@
 			text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.",
 		},
 	];
+
+	// dispatch from FeedbackItem to FeedbackList which is forwarding to App
+	const deleteFeedback = (e) => {
+		// fetch itemId from FeedbackItem through e (event parameter)
+		const itemId = e.detail
+		// filter out from list when deleted
+		feedback = feedback.filter((item) => item.id != itemId)
+	}
 </script>
 
-<main>
+<main class="container">
 	<!-- pass in {feedback} as prop, but same name so only need {} -->
-	<FeedbackList {feedback}/>
+	<!-- on:delete-feedback- catch event forwarding from FeedbackList and {deleteFeedback} calls the function -->
+	<FeedbackList {feedback} on:delete-feedback= {deleteFeedback}/>
 </main>
 
 <style>

@@ -7,5 +7,6 @@
 
 {#each feedback as fb (fb.id)}
     <!-- take each item {fb} as prop -->
-    <FeedbackItem item={fb} />
+    <!-- don't have access to feedback list, but without the = after on:delete-feedback, can forward up to App (event forwarding) -->
+    <FeedbackItem item={fb} on:delete-feedback/>
 {/each}
