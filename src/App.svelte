@@ -1,5 +1,6 @@
 <script>
 	import FeedbackList from './components/FeedbackList.svelte'
+	import FeedbackStats from './components/FeedbackStats.svelte'
 
 	let feedback = [
 		{
@@ -19,6 +20,12 @@
 		},
 	];
 
+	// reactive number for total feedback items
+	$: count = feedback.length
+
+	// avg of reviews
+	$: average = feedback.reduce((a, {rating}) => a + rating, 0) / feedback.length
+
 	// dispatch from FeedbackItem to FeedbackList which is forwarding to App
 	const deleteFeedback = (e) => {
 		// fetch itemId from FeedbackItem through e (event parameter)
@@ -29,6 +36,7 @@
 </script>
 
 <main class="container">
+	<FeedbackStats {count} {average}/>
 	<!-- pass in {feedback} as prop, but same name so only need {} -->
 	<!-- on:delete-feedback- catch event forwarding from FeedbackList and {deleteFeedback} calls the function -->
 	<FeedbackList {feedback} on:delete-feedback= {deleteFeedback}/>
