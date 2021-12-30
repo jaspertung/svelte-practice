@@ -1,4 +1,5 @@
 <script>
+	import FeedbackForm from './components/FeedbackForm.svelte'
 	import FeedbackList from './components/FeedbackList.svelte'
 	import FeedbackStats from './components/FeedbackStats.svelte'
 
@@ -36,6 +37,7 @@
 </script>
 
 <main class="container">
+	<FeedbackForm />
 	<FeedbackStats {count} {average}/>
 	<!-- pass in {feedback} as prop, but same name so only need {} -->
 	<!-- on:delete-feedback- catch event forwarding from FeedbackList and {deleteFeedback} calls the function -->
