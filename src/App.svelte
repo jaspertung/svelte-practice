@@ -23,6 +23,7 @@
 
 	// reactive number for total feedback items
 	$: count = feedback.length
+	// test test test
 
 	// avg of reviews
 	$: average = feedback.reduce((a, {rating}) => a + rating, 0) / feedback.length
